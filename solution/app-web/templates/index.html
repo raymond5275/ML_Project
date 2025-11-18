@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning Models for Classification</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #2a4d9b;
+        }
+
+        p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            width: 260px;
+            padding: 25px 10px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 18px;
+            color: #2a4d9b;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            color: #0d2b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Machine Learning Models for Classification</h1>
+
+    <p>
+        This web application allows you to interact with machine learning models trained using 
+        <strong>Scikit-learn</strong> and <strong>Keras</strong>.  
+        The first model uses structured data, while the second allows image upload.
+    </p>
+
+    <div class="card-container">
+        <div class="card">
+            <a href="/irisClassifier">🌸 Iris Classifier</a>
+        </div>
+        <div class="card">
+            <a href="/shapesClassifier">🟦 Shapes Classifier</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

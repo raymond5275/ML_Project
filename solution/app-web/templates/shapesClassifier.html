@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shapes Classifier</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #2a4d9b;
+        }
+
+        p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            width: 450px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2a4d9b;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="file"] {
+            font-size: 15px;
+        }
+
+        .button-row {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 0 8px;
+            transition: 0.3s;
+        }
+
+        .btn-clear {
+            background: #ccc;
+            color: #333;
+        }
+
+        .btn-clear:hover {
+            background: #b5b5b5;
+        }
+
+        .btn-submit {
+            background: #2a4d9b;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #0d2b6b;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-size: 16px;
+            color: #2a4d9b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #0d2b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Shapes Classifier</h1>
+    <p>Upload an image of a shape and let the model classify it.</p>
+
+    <div class="form-card">
+        <form action="/shapesClassifier" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <div class="button-row">
+                <input type="reset" value="Clear" class="btn btn-clear">
+                <input type="submit" value="Submit" class="btn btn-submit">
+            </div>
+
+        </form>
+    </div>
+
+    <a href="/" class="back-link">← Back to Home</a>
+
+</body>
+
+</html>

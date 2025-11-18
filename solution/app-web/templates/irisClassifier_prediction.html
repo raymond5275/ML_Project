@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iris Classifier Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            color: #2a4d9b;
+        }
+
+        .result-card {
+            width: 450px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .result-card table {
+            width: 100%;
+        }
+
+        .result-card td {
+            padding: 10px 5px;
+        }
+
+        .result-card strong {
+            color: #2a4d9b;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-size: 16px;
+            color: #2a4d9b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #0d2b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Iris Classifier Prediction Result</h1>
+
+    <div class="result-card">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Sepal Length:</strong></td>
+                    <td>{{ sepal_length }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Sepal Width:</strong></td>
+                    <td>{{ sepal_width }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Petal Length:</strong></td>
+                    <td>{{ petal_length }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Petal Width:</strong></td>
+                    <td>{{ petal_width }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Prediction:</strong></td>
+                    <td><strong style="color: #0d2b6b;">{{ prediction }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="back-link" href="/">← Back to Home</a>
+
+</body>
+
+</html>
