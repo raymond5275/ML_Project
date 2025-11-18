@@ -6,3 +6,6 @@ jinja2
 numpy
 tensorflow
 pillow
+connexion
+flask
+werkzeug
