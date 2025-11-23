@@ -1,14 +1,12 @@
 import connexion
-import os
 
-# Determine the directory of this file
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = connexion.App(__name__, specification_dir='.')
+app.add_api('openapi.yaml')
 
-# Create connexion app with correct spec directory
-app = connexion.App(__name__, specification_dir=BASE_DIR)
+flask_app = app.app   # Access underlying Flask app
 
-# Load the OpenAPI file using absolute path
-app.add_api(os.path.join(BASE_DIR, "openapi.yaml"))
+@flask_app.route("/")
+def home():
+    return "ML API running! Try /models/irisClassifier", 200
 
-# WSGI app for gunicorn
 application = app.app
