@@ -13,7 +13,7 @@ def irisClassifier():
     try:
 
         #Load the model
-        model = joblib.load('../models/iris_dtree_classifier.joblib')
+        model = joblib.load('models/iris_dtree_classifier.joblib')
 
         #Get the input data from the request body in JSON format
         data = request.get_json()
@@ -65,7 +65,7 @@ def shapesClassifier(image=None):
         image.save(image_path)
         
         #Load the model
-        model = load_model('../models/shape_classifier_cnn.keras')
+        model = load_model('models/shape_classifier_cnn.keras')
 
         #Preprocess the image
         image_array = preprocess_image(image_path)
