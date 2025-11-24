@@ -9,9 +9,9 @@ flask-cors==4.0.0
 werkzeug==2.3.7
 gunicorn==21.2.0
 
-# ML Dependencies (numpy will be installed via build command)
+# ML Dependencies
 pandas==2.0.3
-tensorflow-cpu==2.13.0
+tensorflow==2.15.0
 pillow==10.0.0
 joblib==1.3.2
 scikit-learn==1.3.0
