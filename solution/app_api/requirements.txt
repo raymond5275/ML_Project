@@ -1,11 +1,6 @@
-# Build tools
-setuptools==68.0.0
-wheel==0.41.0
-
-# Web framework (let connexion determine compatible werkzeug)
+# Web framework (let connexion manage flask and werkzeug versions)
 connexion[swagger-ui]==2.14.2
-flask==2.3.3
-flask-cors==4.0.0
+flask-cors
 gunicorn==21.2.0
 
 # ML Dependencies
