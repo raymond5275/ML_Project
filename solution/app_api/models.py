@@ -1,0 +1,69 @@
+import json
+from flask import request, Response
+import joblib
+import pandas as pd
+import numpy as np
+from tensorflow.keras.preprocessing.image import img_to_array, load_img
+from tensorflow.keras.models import load_model
+import os
+
+# Base directory of THIS file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def irisClassifier():
+    try:
+        # Model path
+        model_path = os.path.join(BASE_DIR, "models", "iris_dtree_classifier.joblib")
+        model = joblib.load(model_path)
+
+        data = request.get_json()
+
+        features = pd.DataFrame([{
+            'sepal_length': data['sepal_length'],
+            'sepal_width': data['sepal_width'],
+            'petal_length': data['petal_length'],
+            'petal_width': data['petal_width']
+        }])
+
+        prediction = model.predict(features)
+
+        return Response(json.dumps({
+            'prediction': str(prediction[0])
+        }), status=200, mimetype='application/json')
+
+    except Exception as e:
+        return Response(json.dumps({'error': str(e)}),
+                        status=500, mimetype='application/json')
+
+
+def shapesClassifier():
+    try:
+        image = request.files.get("image")
+        if image is None:
+            return Response(json.dumps({'error': 'No image provided'}), status=400, mimetype='application/json')
+
+        # Save to temp folder
+        image_path = os.path.join(BASE_DIR, "temp", image.filename)
+        image.save(image_path)
+
+        # Load CNN model
+        model_path = os.path.join(BASE_DIR, "models", "shape_classifier_cnn.keras")
+        model = load_model(model_path)
+
+        img = load_img(image_path, target_size=(64, 64))
+        img_array = img_to_array(img) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
+
+        prediction = model.predict(img_array)
+        predicted_class = int(np.argmax(prediction))
+
+        labels = {0: "circle", 1: "square", 2: "star", 3: "triangle"}
+
+        return Response(json.dumps({
+            "prediction": labels[predicted_class]
+        }), 200, mimetype="application/json")
+
+    except Exception as e:
+        return Response(json.dumps({'error': str(e)}),
+                        status=500, mimetype='application/json')
