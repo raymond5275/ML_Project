@@ -18,7 +18,7 @@ def irisClassifier():
         print("Received JSON:", request.get_json())
 
         # Load model
-        model_path = os.path.join(BASE_DIR, "models", "iris_dtree_classifier.joblib")
+        model_path = os.path.join(BASE_DIR, "ml_models", "iris_dtree_classifier.joblib")
         print("Model path:", model_path)
 
         model = joblib.load(model_path)
@@ -58,7 +58,7 @@ def shapesClassifier():
         image.save(image_path)
 
         # Load CNN model
-        model_path = os.path.join(BASE_DIR, "models", "shape_classifier_cnn.keras")
+        model_path = os.path.join(BASE_DIR, "ml_models", "shape_classifier_cnn.keras")
         model = load_model(model_path)
 
         img = load_img(image_path, target_size=(64, 64))
