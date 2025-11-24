@@ -99,7 +99,7 @@ def home():
 def health():
     model_status = {
         "iris": os.path.exists('ml_models/iris_dtree_classifier.joblib'),
-        "shapes": os.path.exists('ml_models/r_shapes_classifier_crnn.keras')
+        "shapes": os.path.exists('ml_models/shapes_classifier_crnn.keras')
     }
     return jsonify({
         "status": "healthy",
