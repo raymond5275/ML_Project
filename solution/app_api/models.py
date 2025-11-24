@@ -10,12 +10,19 @@ import os
 # Base directory of THIS file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 def irisClassifier():
     try:
-        # Model path
+        print("⚡ irisClassifier called")
+
+        # DEBUG — print incoming JSON
+        print("Received JSON:", request.get_json())
+
+        # Load model
         model_path = os.path.join(BASE_DIR, "models", "iris_dtree_classifier.joblib")
+        print("Model path:", model_path)
+
         model = joblib.load(model_path)
+        print("Model loaded OK")
 
         data = request.get_json()
 
@@ -27,14 +34,17 @@ def irisClassifier():
         }])
 
         prediction = model.predict(features)
+        print("Prediction:", prediction)
 
-        return Response(json.dumps({
-            'prediction': str(prediction[0])
-        }), status=200, mimetype='application/json')
+        return Response(
+            json.dumps({"prediction": str(prediction[0])}),
+            status=200,
+            mimetype="application/json"
+        )
 
     except Exception as e:
-        return Response(json.dumps({'error': str(e)}),
-                        status=500, mimetype='application/json')
+        print("🔥 ERROR IN irisClassifier:", str(e))
+        return Response(json.dumps({"error": str(e)}), 500, mimetype="application/json")
 
 
 def shapesClassifier():
