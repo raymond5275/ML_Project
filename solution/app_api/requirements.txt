@@ -1,17 +1,16 @@
-connexion[swagger-ui]
-connexion[flask]
-flask
-werkzeug
-gunicorn
+# Connexion with Flask (pinned to v2 for stability)
+connexion[swagger-ui]==2.14.2
+flask==2.3.3
+flask-cors==4.0.0
+werkzeug==2.3.7
+gunicorn==21.2.0
 
-fastapi
-uvicorn
-pydantic
-python-multipart
-jinja2
+# ML Dependencies
+pandas==2.0.3
+numpy==1.24.3
+tensorflow==2.13.0
+pillow==10.0.0
+joblib==1.3.2
+scikit-learn==1.3.0
 
-pandas
-numpy
-tensorflow
-pillow
-joblib
+# Note: Removed fastapi/uvicorn/pydantic as they conflict with connexion
