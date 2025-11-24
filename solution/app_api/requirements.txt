@@ -1,5 +1,4 @@
-# Core dependencies (install these first)
-numpy==1.23.5
+# Build tools
 setuptools==68.0.0
 wheel==0.41.0
 
@@ -10,7 +9,7 @@ flask-cors==4.0.0
 werkzeug==2.3.7
 gunicorn==21.2.0
 
-# ML Dependencies
+# ML Dependencies (numpy will be installed via build command)
 pandas==2.0.3
 tensorflow-cpu==2.13.0
 pillow==10.0.0
