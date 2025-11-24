@@ -8,38 +8,34 @@ import pandas as pd
 import numpy as np
 
 
-def irisClassifier():
-
+ 
+def irisClassifier(body):
     try:
-
-        #Load the model
+        # Load the model
         model = joblib.load('models/iris_dtree_classifier.joblib')
 
-        #Get the input data from the request body in JSON format
-        data = request.get_json()
-
-        #Extract features from the input data into a Pandas Dataframe so that features names can be used
+        # body already contains JSON data
         features = pd.DataFrame([{
-            'sepal_length': data['sepal_length'],
-            'sepal_width': data['sepal_width'],
-            'petal_length': data['petal_length'],
-            'petal_width': data['petal_width']
+            'sepal_length': body['sepal_length'],
+            'sepal_width': body['sepal_width'],
+            'petal_length': body['petal_length'],
+            'petal_width': body['petal_width']
         }])
 
-        # Perform classification using the loaded model
+        # Perform classification
         prediction = model.predict(features)
 
-        # Perform the prediction as a JSON response
+        # Return JSON response
         return Response(json.dumps({
-            'prediction': prediction[0]
+            'prediction': str(prediction[0])
         }), status=200, mimetype='application/json')
-    
+
     except Exception as e:
-
-        #Handle any exceptions that occur during the process
-        return Response(json.dumps({'error': str(e)}), status=500, mimetype='application/json')
+        return Response(json.dumps({
+            'error': str(e)
+        }), status=500, mimetype='application/json')
     
-
+    
 def preprocess_image(image_path, img_size=(64,64)):
 
     img = load_img(image_path, target_size = img_size)
