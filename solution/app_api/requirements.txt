@@ -2,14 +2,13 @@
 setuptools==68.0.0
 wheel==0.41.0
 
-# Web framework
+# Web framework (let connexion determine compatible werkzeug)
 connexion[swagger-ui]==2.14.2
 flask==2.3.3
 flask-cors==4.0.0
-werkzeug==2.3.7
 gunicorn==21.2.0
 
-# ML Dependencies (using versions available on Render)
+# ML Dependencies
 pandas==2.2.3
 tensorflow==2.20.0
 Pillow==11.0.0
