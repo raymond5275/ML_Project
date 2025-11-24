@@ -12,7 +12,7 @@ paths:
   /models/irisClassifier:
     put:
       summary: Use the Iris flower classifier model to make a prediction
-      operationId: models.irisClassifier
+      operationId: app_api.src.models.irisClassifier
       tags:
         - models
       requestBody:
@@ -59,7 +59,7 @@ paths:
   /models/shapesClassifier:
     put:
       summary: Use the Shapes classifier model to make a prediction
-      operationId: models.shapesClassifier
+      operationId: app_api.src.models.shapesClassifier
       tags:
         - models
       requestBody:
