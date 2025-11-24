@@ -10,6 +10,7 @@ pydantic
 python-multipart
 jinja2
 
+pandas
 numpy
 tensorflow
 pillow
