@@ -88,7 +88,7 @@ def shapesClassifier(image):
         print(f"Image array shape: {img_array.shape}")
 
         # Load CNN model
-        model_path = os.path.join(BASE_DIR, "ml_models", "r_shapes_classifier_crnn.keras")
+        model_path = os.path.join(BASE_DIR, "ml_models", "shapes_classifier_crnn.keras")
         print("Model path:", model_path)
         
         model = load_model(model_path)

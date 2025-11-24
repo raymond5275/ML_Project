@@ -40,7 +40,7 @@ except Exception as e:
 print("\n🤖 Checking model files...")
 model_files = [
     'ml_models/iris_dtree_classifier.joblib',
-    'ml_models/r_shapes_classifier_crnn.keras'
+    'ml_models/shapes_classifier_crnn.keras'
 ]
 for model_file in model_files:
     if os.path.exists(model_file):
