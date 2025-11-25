@@ -4,10 +4,28 @@ from flask import request
 import requests
 import os
 
-app = Flask (__name__, template_folder='../templates', static_folder='../static')
+# Get the base directory (where app.py is located)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-UPLOAD_FOLDER = '../static/images'
+# Determine template and static folders
+# If templates/ and static/ are in parent directory, use ../ 
+# Otherwise, look in same directory
+if os.path.exists(os.path.join(BASE_DIR, '../templates')):
+    TEMPLATE_FOLDER = os.path.join(BASE_DIR, '../templates')
+    STATIC_FOLDER = os.path.join(BASE_DIR, '../static')
+else:
+    TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
+    STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
+
+app = Flask(__name__, template_folder=TEMPLATE_FOLDER, static_folder=STATIC_FOLDER)
+
+# Upload folder inside static
+UPLOAD_FOLDER = os.path.join(STATIC_FOLDER, 'images')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Use environment variable for API URL, fallback to localhost for local dev
+API_BASE_URL = os.environ.get('API_BASE_URL', 'http://127.0.0.1:8080')
 
 
 @app.route('/', methods=['GET'])
@@ -30,7 +48,7 @@ def irisClassifier():
             petal_width = float(request.form['petal_width'])
 
             #Call the API to get the prediction with a PUT request
-            url = 'http://127.0.0.1:8080/api/models/irisClassifier'
+            url = f'{API_BASE_URL}/models/irisClassifier'
             data = {
                   'sepal_length':sepal_length,
                   'sepal_width': sepal_width,
@@ -42,7 +60,7 @@ def irisClassifier():
             if response.status_code == 200:
                 prediction = response.json()['prediction']
             else:
-                prediction = 'Error' + response.content.decode('utf-8')
+                prediction = 'Error: ' + response.content.decode('utf-8')
 
             return render_template('irisClassifier_prediction.html',
                                    sepal_length=sepal_length,
@@ -61,21 +79,24 @@ def shapesClassifier():
      elif request.method == 'POST':
 
         #GET the input data from the form
-        file = request.files['image']                     # changed 'images' -> 'image'
+        file = request.files['image']
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
 
         #Call the API to get the prediction with a PUT request
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        url = 'http://127.0.0.1:8080/api/models/shapesClassifier'
-        with open(image_path, 'rb') as f:                  # use context manager to auto-close
-            files = {'image': f}                          # changed key to 'image'
+        url = f'{API_BASE_URL}/models/shapesClassifier'
+        with open(image_path, 'rb') as f:
+            files = {'image': f}
             response = requests.put(url, files=files)
 
         if response.status_code == 200:
             prediction = response.json().get('prediction')
         else:
-            prediction = 'Error ' + response.content.decode('utf-8')
+            prediction = 'Error: ' + response.content.decode('utf-8')
 
         return render_template('shapesClassifier_prediction.html',
                                file_name=file.filename,
                                prediction=prediction)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
