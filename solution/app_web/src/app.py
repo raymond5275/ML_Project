@@ -5,27 +5,27 @@ import requests
 import os
 
 # Get the base directory (where app.py is located)
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Determine template and static folders
 # If templates/ and static/ are in parent directory, use ../ 
 # Otherwise, look in same directory
-# if os.path.exists(os.path.join(BASE_DIR, '../templates')):
-#     TEMPLATE_FOLDER = os.path.join(BASE_DIR, '../templates')
-#     STATIC_FOLDER = os.path.join(BASE_DIR, '../static')
-# else:
-#     TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
-#     STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
+if os.path.exists(os.path.join(BASE_DIR, '../templates')):
+    TEMPLATE_FOLDER = os.path.join(BASE_DIR, '../templates')
+    STATIC_FOLDER = os.path.join(BASE_DIR, '../static')
+else:
+    TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
+    STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
 
 
 
 # Point to templates and static folders in parent directory
-template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'templates')
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static')
+# template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'templates')
+#static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'static')
 
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+#app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-#app = Flask(__name__, template_folder=TEMPLATE_FOLDER, static_folder=STATIC_FOLDER)
+app = Flask(__name__, template_folder=TEMPLATE_FOLDER, static_folder=STATIC_FOLDER)
 
 # Upload folder inside static
 UPLOAD_FOLDER = os.path.join(STATIC_FOLDER, 'images')
